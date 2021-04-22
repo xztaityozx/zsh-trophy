@@ -41,10 +41,14 @@ func (t Trophy) Print(width int) {
 }
 
 var TrophyList = map[int]ITrophy{
-	1: FirstTime{Command: "ls", Comment: "lsにaliasが貼られててもいいけどね"},
-	2: NthCmd{Command: "ls", Count: 5, Key: "2::count", Grade: Bronze, Title: "5回目のls", Desc: fmt.Sprintf("lsコマンドを通算5回実行した\nとりあえずls打っちゃうことって有るよね")},
-	3: NthCmd{Command: "ls", Count: 50, Key: "3::count", Grade: Silver, Title: "50回目のls", Desc: fmt.Sprintf("lsコマンドを通算50回実行した\nslコマンドと間違えたりしないよね？")},
-	4: NthCmd{Command: "ls", Count: 100, Key: "4::count", Grade: Gold, Title: "lsマスター", Desc: fmt.Sprintf("lsコマンドを通算100回実行した\nおめでとうキミこそlsマスターだ")},
-	5: NthCmd{Command: "ls", Count: 200, Key: "4::count", Grade: Gold, Title: "キーボードにlsキーを作ろうと思います", Desc: fmt.Sprintf("lsコマンドを通算200回実行した\nワンタッチで入力されるlsキーが欲しい")},
-	6: NthCmd{Command: "ls", Count: 1000, Key: "4::count", Grade: Special, Title: "実質lsコマンド", Desc: fmt.Sprintf("lsコマンドを通算1000回実行した\nもうお前がlsでいいよ")},
+	1:  FirstTime{Command: "ls", Comment: "lsにaliasが貼られててもいいけどね"},
+	2:  NthCmd{Command: "ls", Count: 5, Key: "2::count", Grade: Bronze, Title: "5回目のls", Desc: fmt.Sprintf("lsコマンドを通算5回実行した\nとりあえずls打っちゃうことって有るよね")},
+	3:  NthCmd{Command: "ls", Count: 50, Key: "3::count", Grade: Silver, Title: "50回目のls", Desc: fmt.Sprintf("lsコマンドを通算50回実行した\nslコマンドと間違えたりしないよね？")},
+	4:  NthCmd{Command: "ls", Count: 100, Key: "4::count", Grade: Gold, Title: "lsマスター", Desc: fmt.Sprintf("lsコマンドを通算100回実行した\nおめでとうキミこそlsマスターだ")},
+	5:  NthCmd{Command: "ls", Count: 200, Key: "4::count", Grade: Gold, Title: "キーボードにlsキーを作ろうと思います", Desc: fmt.Sprintf("lsコマンドを通算200回実行した\nワンタッチで入力されるlsキーが欲しい")},
+	6:  NthCmd{Command: "ls", Count: 1000, Key: "4::count", Grade: Special, Title: "実質lsコマンド", Desc: fmt.Sprintf("lsコマンドを通算1000回実行した\nもうお前がlsでいいよ")},
+	7:  FirstTime{Command: "cd", Comment: "まずはcdコマンドだよね"},
+	8:  NthCmd{Command: "cd", Count: 5, Key: "8::count", Grade: Bronze, Title: "5回目のcd", Desc: fmt.Sprintf("cdコマンドを通算5回実行した\n移動にはもう慣れたかな？")},
+	9:  NthCmd{Command: "cd", Count: 50, Key: "9::count", Grade: Silver, Title: "50回目のcd", Desc: fmt.Sprintf("cdコマンドを通算50回実行した")},
+	10: NthCmd{Command: "cd", Count: 100, Key: "10::count", Grade: Gold, Title: "cdマスター", Desc: fmt.Sprintf("cdコマンドを通算100回実行した\nおめでとうキミこそcdマスターだ")},
 }
