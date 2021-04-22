@@ -16,8 +16,7 @@ function _zt_load_record() {
 
 _zt_load_record
 
-
-function main() {
+function _zt-main() {
   zmodload zsh/zutil
   local -A opthash
   zparseopts -D -A opthash -- h -help || return 1
@@ -44,10 +43,10 @@ function zt-preexec() {
 }
 
 function zt-zshexit() {
-  _zt_flush_record
+  zt-save
 }
 
-function _zt_flush_record() {
+function zt-save() {
   [[ "$ZT_FLUSHING" == "1" ]] && return
   ZT_FLUSHING=1
   for k in ${(k)ZT_RECORD_HASH}; do
@@ -102,4 +101,4 @@ function _zt_torophy_checker_list() {
   command ls $ZT_DIR/trophy/*.zsh
 }
 
-main
+_zt-main
