@@ -29,5 +29,8 @@ func Test_NthCmd_Check(t *testing.T) {
 		res, err := nthCmd.Check("cmd", record.Record{Args: map[string]string{"key": "9"}})
 		as.Nil(err)
 		as.True(res.Cleared, "trueなべき")
+		as.Equal("Grade", res.Grade)
+		as.Equal("Desc", res.Desc)
+		as.Equal("Title", res.Title)
 	})
 }
