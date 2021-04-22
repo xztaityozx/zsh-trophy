@@ -41,6 +41,7 @@ func (t Trophy) Print(width int) {
 }
 
 var TrophyList = map[int]ITrophy{
+	1: FirstTime{Command: "ls", Comment: "lsにaliasが貼られててもいいけどね"},
 	2: NthCmd{Command: "ls", Count: 5, Key: "2::count", Grade: Bronze, Title: "5回目のls", Desc: fmt.Sprintf("lsコマンドを通算5回実行した\nとりあえずls打っちゃうことって有るよね")},
 	3: NthCmd{Command: "ls", Count: 50, Key: "3::count", Grade: Silver, Title: "50回目のls", Desc: fmt.Sprintf("lsコマンドを通算50回実行した\nslコマンドと間違えたりしないよね？")},
 	4: NthCmd{Command: "ls", Count: 100, Key: "4::count", Grade: Gold, Title: "lsマスター", Desc: fmt.Sprintf("lsコマンドを通算100回実行した\nおめでとうキミこそlsマスターだ")},
