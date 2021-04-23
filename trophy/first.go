@@ -12,7 +12,7 @@ type FirstTime struct {
 	Comment string
 }
 
-func (ft FirstTime) Check(cmd string, r record.Record) (Trophy, error) {
+func (ft FirstTime) Check(cmd string, _ record.Record) (Trophy, error) {
 	re, err := regexp.Compile(fmt.Sprintf("^%s ?", ft.Command))
 	if err != nil {
 		return Trophy{}, err

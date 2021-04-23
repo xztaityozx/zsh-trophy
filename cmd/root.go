@@ -2,10 +2,12 @@ package cmd
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
+	"strconv"
 	"xztaityozx/zsh-trophy/record"
 	"xztaityozx/zsh-trophy/trophy"
 
@@ -50,7 +52,16 @@ var rootCmd = &cobra.Command{
 			record.Status = map[int]bool{}
 		}
 
-		for id, itrophy := range trophy.TrophyList {
+		progress := 0
+		{
+			if str, ok := record.Args["progress"]; ok {
+				if v, err := strconv.Atoi(str); err == nil {
+					progress = v
+				}
+			}
+		}
+
+		for id, itrophy := range trophy.GenerateTrophyList(ztd) {
 			if val, ok := record.Status[id]; ok && val {
 				continue
 			}
@@ -60,16 +71,18 @@ var rootCmd = &cobra.Command{
 				continue
 			}
 
-			for k, v := range t.Values {
-				record.Args[k] = v
-			}
-
 			if t.Cleared {
 				t.Print(width)
 				record.Status[id] = true
+				progress++
+			}
+
+			for k, v := range t.Values {
+				record.Args[k] = v
 			}
 		}
 
+		record.Args["progress"] = fmt.Sprint(progress)
 		b, err = json.Marshal(record)
 		if err != nil {
 			log.Fatal(err)

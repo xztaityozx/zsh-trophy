@@ -13,7 +13,7 @@ type SimpleRegexp struct {
 	Desc  string
 }
 
-func (sr SimpleRegexp) Check(cmd string, r record.Record) (Trophy, error) {
+func (sr SimpleRegexp) Check(cmd string, _ record.Record) (Trophy, error) {
 	if sr.Re == nil {
 		return Trophy{}, errors.New("Regexp is nil")
 	}
