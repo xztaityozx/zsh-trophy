@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 	"xztaityozx/zsh-trophy/record"
 )
@@ -51,4 +52,5 @@ var TrophyList = map[int]ITrophy{
 	8:  NthCmd{Command: "cd", Count: 5, Key: "8::count", Grade: Bronze, Title: "5回目のcd", Desc: fmt.Sprintf("cdコマンドを通算5回実行した\n移動にはもう慣れたかな？")},
 	9:  NthCmd{Command: "cd", Count: 50, Key: "9::count", Grade: Silver, Title: "50回目のcd", Desc: fmt.Sprintf("cdコマンドを通算50回実行した")},
 	10: NthCmd{Command: "cd", Count: 100, Key: "10::count", Grade: Gold, Title: "cdマスター", Desc: fmt.Sprintf("cdコマンドを通算100回実行した\nおめでとうキミこそcdマスターだ")},
+	11: SimpleRegexp{Re: regexp.MustCompile(`xargs .*-P\d+`), Title: "へいれつ！", Desc: fmt.Sprintf("xargsの-Pオプションを使った\n並列！並列！", Grade: Silver)},
 }
