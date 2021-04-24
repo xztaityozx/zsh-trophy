@@ -26,11 +26,16 @@ var rootCmd = &cobra.Command{
 			log.Fatal("ztd(arg[0]) is required")
 		}
 
+		if val, ok := os.LookupEnv("ZT_RECORD"); ok {
+			rd = val
+		}
+
 		if len(rd) == 0 {
 			rd = filepath.Join(ztd, ".record", "record.json")
 		}
 
 		if _, err := os.Stat(rd); err != nil {
+			os.MkdirAll(filepath.Base(rd), 0755)
 			fp, err := os.Create(rd)
 			if err != nil {
 				log.Fatal(err)
@@ -61,6 +66,20 @@ var rootCmd = &cobra.Command{
 			}
 		}
 
+		// RecordCheck
+		if !record.Status[0] {
+			t, err := trophy.RecordCheck{Ztd: ztd}.Check("", record)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			if t.Cleared {
+				t.Print(width)
+				record.Status[0] = true
+				progress++
+			}
+		}
+
 		for id, itrophy := range trophy.GenerateTrophyList(ztd) {
 			if val, ok := record.Status[id]; ok && val {
 				continue
@@ -83,6 +102,7 @@ var rootCmd = &cobra.Command{
 		}
 
 		record.Args["progress"] = fmt.Sprint(progress)
+
 		b, err = json.Marshal(record)
 		if err != nil {
 			log.Fatal(err)

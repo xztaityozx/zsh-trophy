@@ -3,12 +3,13 @@ package trophy
 import (
 	"bufio"
 	"fmt"
-	"github.com/mitchellh/go-homedir"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
 	"xztaityozx/zsh-trophy/record"
+
+	"github.com/mitchellh/go-homedir"
 )
 
 const (
@@ -173,26 +174,26 @@ func GenerateTrophyList(ztd string) map[int]ITrophy {
 		},
 
 		44: FirstTime{Command: "rm", Comment: "削除するお！"},
-		45: NthCmd{Command: "rm", Title: "5回目のrm", Desc: fmt.Sprintf("rmコマンドを通算5回実行した"), Grade: Bronze, Key: "45::count"},
-		46: NthCmd{Command: "rm", Title: "10回目のrm", Desc: fmt.Sprintf("rmコマンドを通算10回実行した"), Grade: Bronze, Key: "46::count"},
-		47: NthCmd{Command: "rm", Title: "50回目のrm", Desc: fmt.Sprintf("rmコマンドを通算50回実行した"), Grade: Silver, Key: "47::count"},
-		48: NthCmd{Command: "rm", Title: "100回目のrm", Desc: fmt.Sprintf("rmコマンドを通算100回実行した"), Grade: Gold, Key: "48::count"},
-		49: NthCmd{Command: "rm", Title: "1000回目のrm", Desc: fmt.Sprintf("rmコマンドを通算1000回実行した"), Grade: Special, Key: "49::count"},
-		51: NthCmd{Command: "mv", Title: "5回目のmv", Desc: fmt.Sprintf("mvコマンドを通算5回実行した"), Grade: Bronze, Key: "51::count"},
-		52: NthCmd{Command: "mv", Title: "10回目のmv", Desc: fmt.Sprintf("mvコマンドを通算10回実行した"), Grade: Bronze, Key: "52::count"},
-		53: NthCmd{Command: "mv", Title: "50回目のmv", Desc: fmt.Sprintf("mvコマンドを通算50回実行した"), Grade: Silver, Key: "53::count"},
-		54: NthCmd{Command: "mv", Title: "100回目のmv", Desc: fmt.Sprintf("mvコマンドを通算100回実行した"), Grade: Gold, Key: "54::count"},
-		55: NthCmd{Command: "mv", Title: "1000回目のmv", Desc: fmt.Sprintf("mvコマンドを通算1000回実行した"), Grade: Special, Key: "55::count"},
-		56: NthCmd{Command: "date", Title: "5回目のdate", Desc: fmt.Sprintf("dateコマンドを通算5回実行した"), Grade: Bronze, Key: "56::count"},
-		57: NthCmd{Command: "date", Title: "10回目のdate", Desc: fmt.Sprintf("dateコマンドを通算10回実行した"), Grade: Bronze, Key: "57::count"},
-		58: NthCmd{Command: "date", Title: "50回目のdate", Desc: fmt.Sprintf("dateコマンドを通算50回実行した"), Grade: Silver, Key: "58::count"},
-		59: NthCmd{Command: "date", Title: "100回目のdate", Desc: fmt.Sprintf("dateコマンドを通算100回実行した"), Grade: Gold, Key: "59::count"},
-		60: NthCmd{Command: "date", Title: "1000回目のdate", Desc: fmt.Sprintf("dateコマンドを通算1000回実行した"), Grade: Special, Key: "60::count"},
+		45: NthCmd{Count: 5, Command: "rm", Title: "5回目のrm", Desc: fmt.Sprintf("rmコマンドを通算5回実行した"), Grade: Bronze, Key: "45::count"},
+		46: NthCmd{Count: 10, Command: "rm", Title: "10回目のrm", Desc: fmt.Sprintf("rmコマンドを通算10回実行した"), Grade: Bronze, Key: "46::count"},
+		47: NthCmd{Count: 50, Command: "rm", Title: "50回目のrm", Desc: fmt.Sprintf("rmコマンドを通算50回実行した"), Grade: Silver, Key: "47::count"},
+		48: NthCmd{Count: 100, Command: "rm", Title: "100回目のrm", Desc: fmt.Sprintf("rmコマンドを通算100回実行した"), Grade: Gold, Key: "48::count"},
+		49: NthCmd{Count: 100, Command: "rm", Title: "1000回目のrm", Desc: fmt.Sprintf("rmコマンドを通算1000回実行した"), Grade: Special, Key: "49::count"},
+		51: NthCmd{Count: 5, Command: "mv", Title: "5回目のmv", Desc: fmt.Sprintf("mvコマンドを通算5回実行した"), Grade: Bronze, Key: "51::count"},
+		52: NthCmd{Count: 10, Command: "mv", Title: "10回目のmv", Desc: fmt.Sprintf("mvコマンドを通算10回実行した"), Grade: Bronze, Key: "52::count"},
+		53: NthCmd{Count: 50, Command: "mv", Title: "50回目のmv", Desc: fmt.Sprintf("mvコマンドを通算50回実行した"), Grade: Silver, Key: "53::count"},
+		54: NthCmd{Count: 100, Command: "mv", Title: "100回目のmv", Desc: fmt.Sprintf("mvコマンドを通算100回実行した"), Grade: Gold, Key: "54::count"},
+		55: NthCmd{Count: 1000, Command: "mv", Title: "1000回目のmv", Desc: fmt.Sprintf("mvコマンドを通算1000回実行した"), Grade: Special, Key: "55::count"},
+		56: NthCmd{Count: 5, Command: "date", Title: "5回目のdate", Desc: fmt.Sprintf("dateコマンドを通算5回実行した"), Grade: Bronze, Key: "56::count"},
+		57: NthCmd{Count: 10, Command: "date", Title: "10回目のdate", Desc: fmt.Sprintf("dateコマンドを通算10回実行した"), Grade: Bronze, Key: "57::count"},
+		58: NthCmd{Count: 50, Command: "date", Title: "50回目のdate", Desc: fmt.Sprintf("dateコマンドを通算50回実行した"), Grade: Silver, Key: "58::count"},
+		59: NthCmd{Count: 100, Command: "date", Title: "100回目のdate", Desc: fmt.Sprintf("dateコマンドを通算100回実行した"), Grade: Gold, Key: "59::count"},
+		60: NthCmd{Count: 1000, Command: "date", Title: "1000回目のdate", Desc: fmt.Sprintf("dateコマンドを通算1000回実行した"), Grade: Special, Key: "60::count"},
 		61: Progress{N: 10, Grade: Bronze, Comment: "まだまだあるぞ"},
 		62: Progress{N: 20, Grade: Silver, Comment: "その調子"},
 		63: Progress{N: 50, Grade: Gold, Comment: "すごいじゃん"},
 		64: Progress{N: 64, Grade: Gold, Comment: "どうでもいい情報だけどこのトロフィーの内部IDも64なんだよ"},
-		65: RecordCheck{Ztd: ztd},
+		65: FirstTime{Command: "date", Comment: "今何時？"},
 		66: SimpleRegexp{Re: regexp.MustCompile(`date .?\+%s.?`), Title: "2038", Desc: fmt.Sprintf("dateコマンドでunixtimeを出力した\n尽きる日のことを思うと･･･"), Grade: Silver},
 		67: StrictEqual{B: "dir", Title: "DOS窓", Desc: fmt.Sprintf("dirしようとした\n黒い画面だもんね"), Grade: Bronze},
 		68: StrictEqual{B: "ipconfig", Title: "IPアドレスはっと･･･", Desc: fmt.Sprintf("ipconfigしようとした\nこのコマンドでドヤ顔したことない？あるでしょ？"), Grade: Bronze},
@@ -272,9 +273,23 @@ func GenerateTrophyList(ztd string) map[int]ITrophy {
 		98: FirstTime{Command: "curl", Comment: "wgetってのもあるんだぜ"},
 		99: FirstTime{Command: "wget", Comment: "curlってのもあるんだぜ"},
 		100: Progress{
-			N:       99,
+			N:       100,
 			Grade:   Special,
-			Comment: "このトロフィーで100個目！おめでとうだね！",
+			Comment: "このトロフィーで101個目！おめでとうだね！",
 		},
+		101: SimpleRegexp{Re: regexp.MustCompile("unko"), Title: "unko is here", Grade: Bronze, Desc: "unkoを含むコマンドを実行した"},
+		102: FirstTime{Command: "grep", Comment: "grepでggれ！"},
+		103: FirstTime{Command: "sed", Comment: ""},
+		104: FirstTime{Command: "awk", Comment: ""},
+		105: FirstTime{Command: "vim", Comment: "emacs"},
+		106: FirstTime{Command: "emacs", Comment: "vim"},
+		107: Sequence{
+			Seq:   []string{"ls", "ls"},
+			Title: "さっきも見たでしょ！",
+			Desc:  "連続でlsした\n",
+			Grade: Bronze,
+			Id:    107,
+		},
+		108: Progress{N: 108, Grade: Special, Comment: "ええっ！すごいな君は！これで完全クリアだ！"},
 	}
 }

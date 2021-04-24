@@ -1,11 +1,12 @@
 package trophy_test
 
 import (
-	"github.com/stretchr/testify/assert"
 	"regexp"
 	"testing"
 	"xztaityozx/zsh-trophy/record"
 	"xztaityozx/zsh-trophy/trophy"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCount_Check(t *testing.T) {
